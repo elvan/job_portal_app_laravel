@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,9 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Job $job)
     {
-        //
+        return view('job.show', compact('job'));
     }
 
     /**
