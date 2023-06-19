@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Job;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,8 @@ class JobController extends Controller
             $query->where('salary', '>=', request('min_salary'));
         })->when(request('max_salary'), function ($query) {
             $query->where('salary', '<=', request('max_salary'));
+        })->when(request('experience'), function ($query) {
+            $query->where('experience', request('experience'));
         });
 
         return view('job.index', ['jobs' => $jobs->get()]);
