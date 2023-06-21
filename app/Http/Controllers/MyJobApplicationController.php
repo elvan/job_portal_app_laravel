@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\JobApplication;
+
 class MyJobApplicationController extends Controller
 {
     public function index()
@@ -23,8 +26,13 @@ class MyJobApplicationController extends Controller
         );
     }
 
-    public function destroy(string $id)
+    public function destroy(JobApplication $myJobApplication)
     {
-        //
+        $myJobApplication->delete();
+
+        return redirect()->back()->with(
+            'success',
+            'Job application removed.'
+        );
     }
 }
